@@ -1,0 +1,2 @@
+Ariel Carvalho;12345678900;ariel@gmail.com;07/01/1990;M;true
+Joao;12312312311;joazinho@gmail.com;01/01/1990;M;false
