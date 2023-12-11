@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 import br.edu.infnet.appSistemaRecomendacao.model.domain.Genero;
 import br.edu.infnet.appSistemaRecomendacao.model.service.GeneroService;
 
-@Order(3)
 @Component	
+@Order(4)
 public class GeneroLoader  implements ApplicationRunner{
 //	private Map<String, Genero> mapa = new HashMap<String, Genero>();
 	
@@ -36,17 +36,12 @@ public class GeneroLoader  implements ApplicationRunner{
 			genero.setDataClassificacao(LocalDateTime.now());
 			genero.setPopularidade(Integer.valueOf(campos[1]));				
 			
-//			mapa.put(genero.getClassificacao(), genero);
 			generoService.incluir(genero);
 			
 			linha = leitura.readLine();			
 			
 			}
-		
-//		for(Genero genero: mapa.values()) {
-//			System.out.println("[GENERO] " + genero);			
-//			
-//		}		
+			
 		
 		for(Genero genero: generoService.obterLista()) {
 			System.out.println("[GENERO] " + genero);					

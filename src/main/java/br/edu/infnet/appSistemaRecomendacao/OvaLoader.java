@@ -6,19 +6,19 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import br.edu.infnet.appSistemaRecomendacao.model.domain.Anime;
-import br.edu.infnet.appSistemaRecomendacao.model.service.AnimeService;
-
-@Component	
-@Order(2)
-public class AnimeLoader implements ApplicationRunner{
+import br.edu.infnet.appSistemaRecomendacao.model.domain.Ova;
+import br.edu.infnet.appSistemaRecomendacao.model.service.OvaService;
 	
+@Component
+@Order(3)
+public class OvaLoader implements ApplicationRunner{
+
 	@Autowired
-	private AnimeService animeService;
+	private OvaService ovaService;
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception{
-		FileReader file = new FileReader("files/animes.txt");
+		FileReader file = new FileReader("files/ovas.txt");
 		BufferedReader leitura = new BufferedReader(file);
 		
 		String linha = leitura.readLine();		
@@ -27,26 +27,27 @@ public class AnimeLoader implements ApplicationRunner{
 		while (linha != null) {
 			campos = linha.split(";");
 			
-			Anime anime = new Anime();			
-			anime.setTitulo(campos[0]);
-			anime.setEpisodios(Integer.valueOf(campos[1]));
-			anime.setRating(Float.valueOf(campos[2]));
-			anime.setMembros(Integer.valueOf(campos[3]));
-			anime.setSinopse(campos[4]);			
-				
+			Ova ova = new Ova();
+			ova.setTitulo(campos[0]);
+			ova.setDuracao(campos[1]);
+			ova.setRating(Float.valueOf(campos[2]));
+			ova.setMembros(Integer.valueOf(campos[3]));
+			ova.setSinopse(campos[4]);			
 			
-			animeService.incluir(anime);
+			
+			ovaService.incluir(ova);
 			
 			linha = leitura.readLine();			
 			
 			}
 
 		
-		for(Anime anime: animeService.obterLista()) {
-			System.out.println("[ANIME] " + anime);					
+		for(Ova ova: ovaService.obterLista()) {
+			System.out.println("[OVA] " + ova);					
 			
 		}
 		
 		leitura.close();
 	}
+
 }

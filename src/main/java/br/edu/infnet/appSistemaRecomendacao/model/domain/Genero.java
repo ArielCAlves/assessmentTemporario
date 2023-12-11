@@ -1,8 +1,19 @@
 package br.edu.infnet.appSistemaRecomendacao.model.domain;
 
 import java.time.LocalDateTime;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "TB_GENERO_ANIME")
 public class Genero {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
 	private String classificacao;
 	private LocalDateTime dataClassificacao;
 	private int popularidade;
@@ -11,6 +22,13 @@ public class Genero {
 	public String toString() {
 		return String.format("classificacao (%s) - dataClassificacao (%s) - popularidade (%d)",
 				classificacao, dataClassificacao, popularidade);
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	public String getClassificacao() {

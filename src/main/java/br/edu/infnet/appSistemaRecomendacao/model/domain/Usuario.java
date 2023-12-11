@@ -1,22 +1,54 @@
 package br.edu.infnet.appSistemaRecomendacao.model.domain;
-//import java.time.LocalDate;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Entity;
+
+@Entity
+@Table(name = "TB_USUARIO")
 public class Usuario {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
 	private String nome;
 	private String cpf;
 	private String email;
-//	private LocalDate nascimento;
 	private String nascimento;
 	private String genero;
-	private boolean ativo;
-//	private List<Anime> historico;
 	
 	@Override
 	public String toString() {
-		return String.format("nome (%s) - cpf (%s) - email (%s) - nascimento (%s) - genero (%s) - ativo (%s)",
-				nome, cpf, email, nascimento, genero, ativo);
+		return String.format("nome (%s) - cpf (%s) - email (%s) - nascimento (%s) - genero (%s)",
+				nome, cpf, email, nascimento, genero);
 	}
 	
+	public Usuario() {		
+	}
+	
+	public Usuario(Integer id) {
+		this.id = id;
+	}
+	
+	public Usuario(String nome, String cpf, String email, String nascimento, String genero) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.nascimento = nascimento;
+		this.genero = genero;
+		
+		
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}	
 	
 	public String getNome() {
 		return nome;
@@ -48,16 +80,4 @@ public class Usuario {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
-	public boolean isAtivo() {
-		return ativo;
-	}
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
-//	public List<Anime> getAnime() {
-//		return animes;
-//	}
-//	public void setAnime(List<Anime> animes) {
-//		this.animes = animes;
-//	}
 }

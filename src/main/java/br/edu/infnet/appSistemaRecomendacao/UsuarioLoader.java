@@ -11,12 +11,10 @@ import org.springframework.stereotype.Component;
 import br.edu.infnet.appSistemaRecomendacao.model.domain.Usuario;
 import br.edu.infnet.appSistemaRecomendacao.model.service.UsuarioService;
 
-@Order(1)
 @Component	
+@Order(1)
 public class UsuarioLoader implements ApplicationRunner {
-	
-//	private Map<String, Usuario> mapa = new HashMap<String, Usuario>();
-	
+		
 	@Autowired
 	private UsuarioService usuarioService;
 	
@@ -36,11 +34,7 @@ public class UsuarioLoader implements ApplicationRunner {
 			usuario.setCpf(campos[1]);
 			usuario.setEmail(campos[2]);
 			usuario.setNascimento(campos[3]);
-//			usuario.setNascimento(LocalDateTime.valueOf(campos[3]));
-			usuario.setGenero(campos[4]);
-			usuario.setAtivo(Boolean.valueOf(campos[5]));
-			
-//			mapa.put(usuario.getCpf(), usuario);	
+			usuario.setGenero(campos[4]);				
 			
 			
 			usuarioService.incluir(usuario);
@@ -49,10 +43,6 @@ public class UsuarioLoader implements ApplicationRunner {
 			
 			}
 		
-//		for(Usuario usuario: mapa.values()) {
-//			System.out.println("[USUARIO] " + usuario);					
-//			
-//		}
 		
 		for(Usuario usuario: usuarioService.obterLista()) {
 			System.out.println("[USUARIO] " + usuario);					

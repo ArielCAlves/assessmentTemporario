@@ -1,22 +1,21 @@
 package br.edu.infnet.appSistemaRecomendacao.model.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import br.edu.infnet.appSistemaRecomendacao.model.domain.Genero;
+import br.edu.infnet.appSistemaRecomendacao.model.repositories.GeneroRepository;
 
 @Service
 public class GeneroService {
-	private Map<String, Genero> mapa = new HashMap<String, Genero>();
+	@Autowired
+	private GeneroRepository generoRepository;
 	
 	public void incluir(Genero genero) {
-		mapa.put(genero.getClassificacao(), genero);
+		generoRepository.save(genero);
 	}
 	
 	public Collection<Genero> obterLista(){
-		return mapa.values();
+		return (Collection<Genero>) generoRepository.findAll();		
 	}
 }
