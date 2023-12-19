@@ -8,6 +8,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.appSistemaRecomendacao.model.domain.Endereco;
 import br.edu.infnet.appSistemaRecomendacao.model.domain.Usuario;
 import br.edu.infnet.appSistemaRecomendacao.model.service.UsuarioService;
 
@@ -16,7 +17,7 @@ import br.edu.infnet.appSistemaRecomendacao.model.service.UsuarioService;
 public class UsuarioLoader implements ApplicationRunner {
 		
 	@Autowired
-	private UsuarioService usuarioService;
+	private UsuarioService usuarioService;	
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception{
@@ -27,14 +28,15 @@ public class UsuarioLoader implements ApplicationRunner {
 		String[] campos = null;
 		
 		while (linha != null) {
-			campos = linha.split(";");
+			campos = linha.split(";");			
 			
 			Usuario usuario = new Usuario();
 			usuario.setNome(campos[0]);
 			usuario.setCpf(campos[1]);
 			usuario.setEmail(campos[2]);
 			usuario.setNascimento(campos[3]);
-			usuario.setGenero(campos[4]);				
+			usuario.setGenero(campos[4]);		
+			usuario.setEndereco(new Endereco(campos[5]));
 			
 			
 			usuarioService.incluir(usuario);

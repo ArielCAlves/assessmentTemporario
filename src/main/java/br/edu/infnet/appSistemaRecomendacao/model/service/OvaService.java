@@ -17,4 +17,8 @@ public class OvaService {
 	public Collection<Ova> obterLista(){
 		return (Collection<Ova>) ovaRepository.findAll();		
 	}
+	
+	public void excluir(Integer id) {
+		ovaRepository.deleteById(id);
+	}
 }

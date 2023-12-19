@@ -19,4 +19,8 @@ public class AnimeService {
 	public Collection<Anime> obterLista(){
 		return (Collection<Anime>) animeRepository.findAll();		
 	}
+	
+	public void excluir(Integer id) {
+		animeRepository.deleteById(id);
+	}
 }

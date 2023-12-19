@@ -19,4 +19,8 @@ public class AssinaturaService {
 	public Collection<Assinatura> obterLista(){
 		return (Collection<Assinatura>) assinaturaRepository.findAll();		
 	}
+	
+	public void excluir(Integer id) {
+		assinaturaRepository.deleteById(id);
+	}
 }

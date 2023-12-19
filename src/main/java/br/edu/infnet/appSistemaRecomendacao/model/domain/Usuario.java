@@ -1,10 +1,13 @@
 package br.edu.infnet.appSistemaRecomendacao.model.domain;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Entity;
 
 @Entity
 @Table(name = "TB_USUARIO")
@@ -19,6 +22,10 @@ public class Usuario {
 	private String email;
 	private String nascimento;
 	private String genero;
+	
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "idEndereco")
+	private Endereco endereco;
 	
 	@Override
 	public String toString() {
@@ -79,5 +86,12 @@ public class Usuario {
 	}
 	public void setGenero(String genero) {
 		this.genero = genero;
+	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 }

@@ -10,11 +10,21 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @Entity
 @Table(name = "TB_MULTIMIDIA")
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(
+		use = JsonTypeInfo.Id.NAME,
+		include = JsonTypeInfo.As.PROPERTY,
+		property = "tipo")
+@JsonSubTypes({
+		@JsonSubTypes.Type(value = Anime.class, name = "Anime"),
+		@JsonSubTypes.Type(value = Ova.class, name = "Ova")})
 public abstract class Multimidia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +35,8 @@ public abstract class Multimidia {
 	private int membros;
 	private String sinopse;
 	
-	@ManyToMany(mappedBy = "multimidias")	
+	@ManyToMany(mappedBy = "multimidias")
+	@JsonBackReference
 	private List<Assinatura> assinaturas;
 	
 	@Override

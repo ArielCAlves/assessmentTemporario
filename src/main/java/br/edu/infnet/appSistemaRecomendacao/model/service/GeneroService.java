@@ -18,4 +18,8 @@ public class GeneroService {
 	public Collection<Genero> obterLista(){
 		return (Collection<Genero>) generoRepository.findAll();		
 	}
+	
+	public void excluir(Integer id) {
+		generoRepository.deleteById(id);
+	}
 }
